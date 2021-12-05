@@ -6,6 +6,7 @@
 package ru.g905.bars;
 
 import java.time.Instant;
+import java.util.Date;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import org.json.JSONObject;
@@ -20,6 +21,7 @@ public class Document {
     private String number = "";
     private long created_at;
     private long updated_at;
+    private Date date;
     private final BooleanProperty active = new SimpleBooleanProperty();
     
     public Document() {
@@ -31,7 +33,8 @@ public class Document {
         name = jsonDoc.getString("name");
         created_at = jsonDoc.getLong("created_at");
         updated_at = jsonDoc.getLong("updated_at");
-        setActive(updated_at + 2000 > Instant.now().getEpochSecond());
+        date = new Date(created_at);
+        setActive(updated_at + (60 * 60 * 24 * 60) > Instant.now().getEpochSecond()); //60s * 60m * 24h * 60d 
     }
 
     public BooleanProperty activeProperty() {
@@ -75,6 +78,14 @@ public class Document {
 
     public void setUpdated_at(long updated_at) {
         this.updated_at = updated_at;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
     
 }

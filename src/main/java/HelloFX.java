@@ -45,7 +45,7 @@ public class HelloFX extends Application {
         columnName.setCellValueFactory(new PropertyValueFactory<>("name"));
         
         TableColumn<Document, Date> columnDate = new TableColumn<>("Создан");
-        columnDate.setCellValueFactory(new PropertyValueFactory<>("created_at"));
+        columnDate.setCellValueFactory(new PropertyValueFactory<>("date"));
         
         columnDate.setCellFactory(column -> {
     TableCell<Document, Date> cell = new TableCell<Document, Date>() {
